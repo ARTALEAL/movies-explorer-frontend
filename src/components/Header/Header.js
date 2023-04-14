@@ -1,7 +1,8 @@
 import React from 'react';
-import { Link, Navigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './Header.css';
 import logo from '../../images/headerLogo.svg';
+import Navigation from '../Navigation/Navigation';
 
 const Header = ({ loggedIn }) => {
   return (
@@ -9,7 +10,7 @@ const Header = ({ loggedIn }) => {
       <Link to="/">
         <img src={logo} alt="Логотип" className="header__logo" />
       </Link>
-      <Navigate loggedIn={loggedIn} />
+      <Navigation loggedIn={loggedIn} />
     </header>
   );
 };
