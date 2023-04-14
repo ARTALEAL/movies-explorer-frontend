@@ -1,0 +1,38 @@
+.promo {
+  position: relative;
+  background: #5c5c5c;
+  box-sizing: border-box;
+  overflow: hidden;
+  background-image: url('../../images/landing-logo.svg');
+  background-repeat: no-repeat;
+  background-position: top 150px right 70px;
+  background-size: 310px 304px;
+  text-align: left;
+}
+
+.promo__container {
+  padding: 75px 0 75px;
+}
+
+.promo__title {
+  color: #fff;
+  font-weight: 400;
+  font-size: 50px;
+  line-height: 58px;
+  margin: 0;
+  padding-left: 70px;
+  max-width: 640px;
+}
+
+.promo__caption {
+  margin: 0;
+  padding-left: 70px;
+  padding-top: 36px;
+  width: 310px;
+  height: 32px;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 16px;
+  color: #ffffff;
+  opacity: 0.5;
+}
