@@ -24,7 +24,7 @@ const About = () => {
       <div>
         <div className="about__time-bar">
           <div className="about__backend">1 Неделя</div>
-          <div className="about__frontend">4 Неделя</div>
+          <div className="about__frontend">4 Недели</div>
         </div>
         <div className="about__time-text">
           <div className="about__backend-text">Back-end</div>
