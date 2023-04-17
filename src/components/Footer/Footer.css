@@ -1,0 +1,39 @@
+.footer {
+  padding: 79px 70px 20px;
+  background-color: #fafafa;
+}
+
+.footer__text {
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 16px;
+  color: #a0a0a0;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #e8e8e8;
+  display: block;
+}
+
+.footer__bottom-block {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 16px;
+  color: #000000;
+  padding-top: 20px;
+}
+
+.footer__socials {
+  display: flex;
+  gap: 20px;
+}
+
+.footer__link {
+  text-decoration: none;
+  color: #000000;
+  transition: 0.4s;
+}
+
+.footer__link:hover {
+  opacity: 0.8;
+}

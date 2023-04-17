@@ -3,6 +3,7 @@ import About from '../About/About';
 import Technologies from '../Technologies/Technologies';
 import Student from '../Student/Student';
 import Portfolio from '../Portfolio/Portfolio';
+import Footer from '../Footer/Footer';
 const Main = ({ loggedIn }) => {
   return (
     <>
@@ -11,6 +12,7 @@ const Main = ({ loggedIn }) => {
       <Technologies />
       <Student />
       <Portfolio />
+      <Footer />
     </>
   );
 };
