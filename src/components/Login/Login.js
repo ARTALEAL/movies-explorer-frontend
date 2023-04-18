@@ -14,6 +14,43 @@ const Login = () => {
         </Link>
         <h1 className="login__title">Рады видеть!</h1>
       </div>
+      <form className="login__form">
+        <label className="login__label" htmlFor="email">
+          E-mail
+        </label>
+        <input
+          className="login__input"
+          type="email"
+          id="email"
+          name="email"
+          required
+          value={enteredValues.email || ''}
+          onChange={handleChange}
+        />
+        <span className="login__error">{errors.email}</span>
+        <label className="login__label" htmlFor="password">
+          Пароль
+        </label>
+        <input
+          className="login__input"
+          type="password"
+          id="password"
+          name="password"
+          required
+          value={enteredValues.password || ''}
+          onChange={handleChange}
+        />
+        <span className="login__error">{errors.password}</span>
+        <button className="login__button" type="submit">
+          Войти
+        </button>
+      </form>
+      <div className="login__register">
+        <span>Ещё не зарегистрированы?</span>
+        <Link to="/signup" className="login__link">
+          Регистрация
+        </Link>
+      </div>
     </div>
   );
 };
