@@ -4,6 +4,7 @@ import './App.css';
 
 import Main from '../Main/Main';
 import Movies from '../Movies/Movies';
+import SavedMovies from '../SavedMovies/SavedMovies';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
@@ -15,6 +16,11 @@ function App() {
           exact
           path="/movies"
           element={<Movies loggedIn={isLoggedIn} />}
+        ></Route>
+        <Route
+          exact
+          path="/saved-movies"
+          element={<SavedMovies loggedIn={isLoggedIn} />}
         ></Route>
       </Routes>
     </div>
