@@ -7,6 +7,7 @@ import Movies from '../Movies/Movies';
 import SavedMovies from '../SavedMovies/SavedMovies';
 import Profile from '../Profile/Profile';
 import Register from '../Register/Register';
+import Login from '../Login/Login';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -30,6 +31,7 @@ function App() {
           element={<Profile loggedIn={isLoggedIn} />}
         ></Route>
         <Route exact path="/signup" element={<Register />}></Route>
+        <Route exact path="/signin" element={<Login />}></Route>
       </Routes>
     </div>
   );
