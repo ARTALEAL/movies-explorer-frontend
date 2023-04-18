@@ -37,3 +37,9 @@
 .footer__link:hover {
   opacity: 0.8;
 }
+
+@media screen and (max-width: 830px) {
+  .footer {
+    padding: 79px 30px 20px;
+  }
+}

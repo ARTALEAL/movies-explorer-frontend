@@ -49,3 +49,16 @@
 .portfolio__projects li:last-of-type {
   border: none;
 }
+
+@media screen and (max-width: 830px) {
+  .portfolio {
+    padding: 0 50px 90px;
+  }
+  .portfolio__title {
+    margin-top: 1px;
+  }
+
+  .portfolio__link {
+    font-size: 28px;
+  }
+}

@@ -24,3 +24,10 @@
 .morebutton__button:hover {
   opacity: 0.8;
 }
+
+@media screen and (max-width: 830px) {
+  .morebutton {
+    margin: auto;
+    margin-top: 92px;
+  }
+}
