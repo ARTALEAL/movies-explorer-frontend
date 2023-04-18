@@ -8,6 +8,7 @@ import SavedMovies from '../SavedMovies/SavedMovies';
 import Profile from '../Profile/Profile';
 import Register from '../Register/Register';
 import Login from '../Login/Login';
+import NotFoundPage from '../NotFoundPage/NotFoundPage';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -32,6 +33,7 @@ function App() {
         ></Route>
         <Route exact path="/signup" element={<Register />}></Route>
         <Route exact path="/signin" element={<Login />}></Route>
+        <Route exact path="*" element={<NotFoundPage />}></Route>
       </Routes>
     </div>
   );
