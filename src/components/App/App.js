@@ -6,9 +6,10 @@ import Main from '../Main/Main';
 import Movies from '../Movies/Movies';
 import SavedMovies from '../SavedMovies/SavedMovies';
 import Profile from '../Profile/Profile';
+import Register from '../Register/Register';
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   return (
     <div className="App">
       <Routes>
@@ -28,6 +29,7 @@ function App() {
           path="/profile"
           element={<Profile loggedIn={isLoggedIn} />}
         ></Route>
+        <Route exact path="/signup" element={<Register />}></Route>
       </Routes>
     </div>
   );
