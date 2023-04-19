@@ -2,10 +2,10 @@ import React from 'react';
 import './BurgerMenu.css';
 import { Link, useLocation } from 'react-router-dom';
 
-const BurgerMenu = ({ onClose }) => {
+const BurgerMenu = ({ onClose, loggedIn }) => {
   const location = useLocation();
   return (
-    <div className="burger">
+    <div className={loggedIn ? 'burger' : 'burger_hide'}>
       <div className="burger__font">
         <div className="burger__container">
           <button

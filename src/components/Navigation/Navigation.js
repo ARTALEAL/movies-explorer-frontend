@@ -6,7 +6,6 @@ import BurgerMenu from '../BurgerMenu/BurgerMenu';
 const Navigation = ({ loggedIn }) => {
   const [isBurgerMenuOpen, setIsBurgerMenuOpen] = useState(false);
   const location = useLocation();
-
   const toggleBurgerMenuOpen = () => {
     setIsBurgerMenuOpen(!isBurgerMenuOpen);
   };
@@ -52,13 +51,13 @@ const Navigation = ({ loggedIn }) => {
           </Link>
         </div>
       )}
-      {!isBurgerMenuOpen && loggedIn ? (
+      {loggedIn && !isBurgerMenuOpen ? (
         <button
           className="navigation__burger-btn"
           onClick={toggleBurgerMenuOpen}
         />
       ) : (
-        <BurgerMenu onClose={toggleBurgerMenuOpen} />
+        <BurgerMenu onClose={toggleBurgerMenuOpen} loggedIn={loggedIn} />
       )}
     </nav>
   );
