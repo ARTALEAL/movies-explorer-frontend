@@ -64,3 +64,28 @@
   border: none;
   cursor: pointer;
 }
+
+@media screen and (max-width: 768px) {
+  .profile__container {
+    margin: 236px auto 269px;
+  }
+  .profile__title {
+    margin-bottom: 80px;
+  }
+  .profile__control {
+    margin-top: 194px;
+  }
+}
+
+@media screen and (max-width: 410px) {
+  .profile__container {
+    width: 260px;
+    margin: 70px auto 40px;
+  }
+  .profile__title {
+    margin-top: 0;
+  }
+  .profile__control {
+    margin-top: 363px;
+  }
+}

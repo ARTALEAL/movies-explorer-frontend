@@ -34,7 +34,7 @@
   opacity: 0.8;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 890px) {
   .cards {
     margin: 0 30px 80px;
   }

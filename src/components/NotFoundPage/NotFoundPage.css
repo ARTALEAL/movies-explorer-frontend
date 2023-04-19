@@ -42,3 +42,19 @@
 .page__link:hover {
   opacity: 0.8;
 }
+
+@media screen and (max-width: 320px) {
+  .page__code {
+    font-size: 80px;
+    line-height: 97px;
+  }
+  .page__code-description {
+    font-size: 12px;
+    line-height: 15px;
+  }
+  .page__link {
+    bottom: 30px;
+    font-size: 12px;
+    line-height: 15px;
+  }
+}

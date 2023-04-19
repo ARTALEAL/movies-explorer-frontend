@@ -86,7 +86,7 @@
   visibility: visible;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 890px) {
   .card {
     width: 339px;
   }
