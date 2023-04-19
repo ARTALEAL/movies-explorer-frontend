@@ -92,3 +92,9 @@
 .navigation__button_account:hover {
   opacity: 0.8;
 }
+
+@media screen and (max-width: 320px) {
+  .navigation__link {
+    margin-right: 14px;
+  }
+}

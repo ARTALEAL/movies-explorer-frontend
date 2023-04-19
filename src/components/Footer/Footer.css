@@ -43,3 +43,27 @@
     padding: 79px 30px 20px;
   }
 }
+
+@media screen and (max-width: 320px) {
+  .footer {
+    padding: 79px 10px 20px;
+  }
+  .footer__text {
+    font-size: 12px;
+    line-height: 15px;
+  }
+  .footer__bottom-block {
+    flex-direction: column-reverse;
+    padding-top: 30px;
+    gap: 30px;
+  }
+  .footer__socials {
+    flex-direction: column;
+    gap: 12px;
+    font-size: 12px;
+    line-height: 15px;
+  }
+  .footer__copyrights {
+    color: #a0a0a0;
+  }
+}

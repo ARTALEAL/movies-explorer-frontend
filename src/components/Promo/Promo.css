@@ -60,3 +60,22 @@
     padding-left: 0;
   }
 }
+
+@media screen and (max-width: 580px) {
+  .promo {
+    background-position: top 144px left 50%;
+    background-size: 210px 206px;
+  }
+  .promo__container {
+    padding-bottom: 30px;
+  }
+  .promo__title {
+    font-size: 30px;
+    line-height: 38px;
+    margin-top: 250px;
+    max-width: 310px;
+  }
+  .promo__caption {
+    padding-top: 24px;
+  }
+}
