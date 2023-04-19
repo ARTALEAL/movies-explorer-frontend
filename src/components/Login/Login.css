@@ -97,3 +97,33 @@
 .login__link:hover {
   opacity: 0.8;
 }
+
+@media screen and (max-width: 768px) {
+  .login__container {
+    margin: 232px auto 232px;
+  }
+}
+
+@media screen and (max-width: 419px) {
+  .login__container {
+    margin: 56px auto 30px;
+    max-width: 260px;
+  }
+  .login__header {
+    text-align: center;
+    margin-bottom: 80px;
+  }
+  .login__logo {
+    margin-bottom: 50px;
+  }
+  .login__button {
+    font-size: 12px;
+    line-height: 15px;
+    padding: 15px 0 15px;
+  }
+  .login__register {
+    font-size: 12px;
+    line-height: 15px;
+    margin-top: 14px;
+  }
+}
