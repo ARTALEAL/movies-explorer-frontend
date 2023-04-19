@@ -1,9 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Navigation.css';
 import { Link, useLocation } from 'react-router-dom';
+import BurgerMenu from '../BurgerMenu/BurgerMenu';
 
 const Navigation = ({ loggedIn }) => {
+  const [isBurgerMenuOpen, setIsBurgerMenuOpen] = useState(false);
   const location = useLocation();
+
+  const toggleBurgerMenuOpen = () => {
+    setIsBurgerMenuOpen(!isBurgerMenuOpen);
+  };
   return (
     <nav className="navigation">
       {loggedIn ? (
@@ -45,6 +51,14 @@ const Navigation = ({ loggedIn }) => {
             <button className="navigation__button">Войти</button>
           </Link>
         </div>
+      )}
+      {!isBurgerMenuOpen && loggedIn ? (
+        <button
+          className="navigation__burger-btn"
+          onClick={toggleBurgerMenuOpen}
+        />
+      ) : (
+        <BurgerMenu onClose={toggleBurgerMenuOpen} />
       )}
     </nav>
   );

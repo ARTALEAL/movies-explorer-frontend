@@ -93,6 +93,27 @@
   opacity: 0.8;
 }
 
+.navigation__burger-btn {
+  background: none;
+  background-image: url('../../images/burger-icon.svg');
+  width: 44px;
+  height: 44px;
+  border: none;
+  cursor: pointer;
+  display: none;
+  transition: 0.4s;
+}
+
+@media screen and (max-width: 768px) {
+  .navigation__movies,
+  .navigation__button_account {
+    display: none;
+  }
+  .navigation__burger-btn {
+    display: block;
+  }
+}
+
 @media screen and (max-width: 320px) {
   .navigation__link {
     margin-right: 14px;
