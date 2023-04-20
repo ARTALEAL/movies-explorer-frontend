@@ -28,6 +28,7 @@ const Register = () => {
           required
           value={enteredValues.name || ''}
           onChange={handleChange}
+          placeholder="Имя"
         />
         <span className="register__error">{errors.name}</span>
         <label className="register__label" htmlFor="email">
@@ -41,6 +42,7 @@ const Register = () => {
           required
           value={enteredValues.email || ''}
           onChange={handleChange}
+          placeholder="E-mail"
         />
         <span className="register__error">{errors.email}</span>
         <label className="register__label" htmlFor="password">
@@ -54,6 +56,7 @@ const Register = () => {
           required
           value={enteredValues.password || ''}
           onChange={handleChange}
+          placeholder="Пароль"
         />
         <span className="register__error">{errors.password}</span>
         <button className="register__button" type="submit">

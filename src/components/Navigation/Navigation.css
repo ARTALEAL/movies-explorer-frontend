@@ -112,6 +112,10 @@
   transition: 0.4s;
 }
 
+.navigation__burger-btn:hover {
+  opacity: 0.8;
+}
+
 @media screen and (max-width: 768px) {
   .navigation__movies,
   .navigation__button_account {

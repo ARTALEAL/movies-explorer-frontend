@@ -16,6 +16,11 @@
   width: 38px;
   height: 38px;
   margin-bottom: 40px;
+  transition: 0.4s;
+}
+
+.register__logo:hover {
+  opacity: 0.8;
 }
 
 .register__title {
@@ -47,7 +52,7 @@
   border: none;
   padding: 15px;
   margin-bottom: 4px;
-  outline: none;
+  outline-color: #2be080;
 }
 
 .register__error {

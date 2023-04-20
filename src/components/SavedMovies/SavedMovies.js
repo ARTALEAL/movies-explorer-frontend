@@ -30,12 +30,14 @@ const savedMovies = [
 
 const SavedMovies = ({ loggedIn }) => {
   return (
-    <section>
+    <>
       <Header loggedIn={loggedIn} />
-      <SearchForm />
-      <MoviesCardList isSavedMoviesPage={true} movies={savedMovies} />
+      <main>
+        <SearchForm />
+        <MoviesCardList isSavedMoviesPage={true} movies={savedMovies} />
+      </main>
       <Footer />
-    </section>
+    </>
   );
 };
 

@@ -35,6 +35,12 @@
   top: 23px;
   right: 23px;
   background-position: center;
+  cursor: pointer;
+  transition: 0.4s;
+}
+
+.burger__close-button:hover {
+  opacity: 0.8;
 }
 
 .burger__menu {

@@ -3,8 +3,8 @@ import './Profile.css';
 import Header from '../Header/Header';
 
 const Profile = ({ loggedIn }) => {
-  const [name, setName] = useState('Имя');
-  const [email, setEmail] = useState('pochta@yandex.ru');
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
 
   return (
     <section>
@@ -22,6 +22,7 @@ const Profile = ({ loggedIn }) => {
               }}
               className="profile__input"
               required
+              placeholder="Имя"
             />
           </div>
           <div className="profile__line"></div>
@@ -35,6 +36,7 @@ const Profile = ({ loggedIn }) => {
               }}
               className="profile__input"
               required
+              placeholder="pochta@yandex.ru"
             />
           </div>
         </form>
