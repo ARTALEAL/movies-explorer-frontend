@@ -13,7 +13,13 @@ const Navigation = ({ loggedIn }) => {
     <nav className="navigation">
       {loggedIn ? (
         <>
-          <div className="navigation__movies">
+          <div
+            className={
+              location.pathname === '/'
+                ? 'navigation__movies navigation__movies_white'
+                : 'navigation__movies'
+            }
+          >
             <Link
               to="/movies"
               className={

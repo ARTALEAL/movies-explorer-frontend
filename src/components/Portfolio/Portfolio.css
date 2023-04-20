@@ -40,6 +40,10 @@
   color: #000000;
   text-decoration: none;
   transition: 0.4s;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
 }
 
 .portfolio__link:hover {
@@ -78,5 +82,9 @@
   }
   .portfolio__projects li:last-of-type {
     padding-bottom: 0;
+  }
+  .portfolio__link {
+    font-size: 18px;
+    line-height: 28px;
   }
 }

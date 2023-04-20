@@ -51,6 +51,14 @@
   margin-right: 50px;
 }
 
+.navigation__movies a {
+  color: #000;
+}
+
+.navigation__movies_white a {
+  color: #fff;
+}
+
 .navigation__movies-link {
   font-weight: 400;
   color: #000000;
