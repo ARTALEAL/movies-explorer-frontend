@@ -6,10 +6,10 @@ const Technologies = () => {
     <div className="technologies">
       <h2 className="technologies__title">Технологии</h2>
       <h3 className="technologies__total-title">7 Технологий</h3>
-      <span className="technologies__description">
+      <p className="technologies__description">
         На курсе веб-разработки мы освоили технологии, которые применили в
         дипломном проекте.
-      </span>
+      </p>
       <ul className="technologies__list">
         <li>HTML</li>
         <li>CSS</li>

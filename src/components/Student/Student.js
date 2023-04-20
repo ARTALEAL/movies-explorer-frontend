@@ -8,7 +8,7 @@ const Student = () => {
       <h2 className="student__title">Студент</h2>
       <div className="student__content">
         <div className="student__info">
-          <span className="student__name">Артём</span>
+          <h3 className="student__name">Артём</h3>
           <span className="student__job">Фронтенд-разработчик, 33 года</span>
           <p className="student__about">
             Я родился и живу в Санкт-Петербурге, закончил факультет экономики
