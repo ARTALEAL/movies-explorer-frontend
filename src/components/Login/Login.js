@@ -4,8 +4,17 @@ import useForm from '../../hooks/useForm';
 import logo from '../../images/headerLogo.svg';
 import { Link } from 'react-router-dom';
 
-const Login = () => {
+const Login = ({ onLogin }) => {
   const { enteredValues, errors, handleChange } = useForm();
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    if (!enteredValues.email || !enteredValues.password) {
+      return;
+    }
+    onLogin(enteredValues);
+  };
+
   return (
     <div className="login__container">
       <div className="login__header">
@@ -14,7 +23,7 @@ const Login = () => {
         </Link>
         <h1 className="login__title">Рады видеть!</h1>
       </div>
-      <form className="login__form">
+      <form className="login__form" onSubmit={handleSubmit}>
         <label className="login__label" htmlFor="email">
           E-mail
         </label>

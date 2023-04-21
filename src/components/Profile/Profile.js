@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './Profile.css';
 import Header from '../Header/Header';
 
-const Profile = ({ loggedIn }) => {
+const Profile = ({ loggedIn, onSignOut }) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
 
@@ -42,7 +42,9 @@ const Profile = ({ loggedIn }) => {
         </form>
         <div className="profile__control">
           <button className="profile__edit">Редактировать</button>
-          <button className="profile__logout">Выйти из аккаунта</button>
+          <button className="profile__logout" onClick={() => onSignOut()}>
+            Выйти из аккаунта
+          </button>
         </div>
       </div>
     </section>

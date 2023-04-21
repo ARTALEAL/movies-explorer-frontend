@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 import './App.css';
 import CurrentUserContext from '../../contexts/CurrentUserContext';
 
@@ -12,9 +12,42 @@ import Login from '../Login/Login';
 import NotFoundPage from '../NotFoundPage/NotFoundPage';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
+import { register, authorize } from '../../utils/MainApi';
+
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
+
+  const navigate = useNavigate();
+
+  // Авторизация
+
+  const handleRegistration = async ({ name, email, password }) => {
+    return register({ name, email, password })
+      .then(() => {
+        handleAuthorization({ email, password });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const handleAuthorization = async (data) => {
+    return authorize(data).then((data) => {
+      setIsLoggedIn(true);
+      localStorage.setItem('jwt', data.token);
+      navigate('/movies');
+    });
+  };
+
+  // Выйти из профиля
+  const handleSignOut = () => {
+    localStorage.clear();
+    setCurrentUser({});
+    setIsLoggedIn(false);
+    navigate('/');
+  };
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="App">
@@ -47,13 +80,21 @@ function App() {
             path="/profile"
             element={
               <ProtectedRoute loggedIn={isLoggedIn}>
-                <Profile loggedIn={isLoggedIn} />
+                <Profile loggedIn={isLoggedIn} onSignOut={handleSignOut} />
               </ProtectedRoute>
             }
           ></Route>
 
-          <Route exact path="/signup" element={<Register />}></Route>
-          <Route exact path="/signin" element={<Login />}></Route>
+          <Route
+            exact
+            path="/signup"
+            element={<Register onRegister={handleRegistration} />}
+          ></Route>
+          <Route
+            exact
+            path="/signin"
+            element={<Login onLogin={handleAuthorization} />}
+          ></Route>
           <Route exact path="*" element={<NotFoundPage />}></Route>
         </Routes>
       </div>
