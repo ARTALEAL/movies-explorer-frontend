@@ -68,3 +68,13 @@ export const getSavedMovies = async (jwt) => {
     },
   }).then((res) => checkResponse(res));
 };
+
+export const deleteMovie = async (id, jwt) => {
+  return fetch(`${BASE_API_URL}/movies/${id}`, {
+    method: 'DELETE',
+    headers: {
+      ...headers,
+      Authorization: `Bearer ${jwt}`,
+    },
+  }).then((res) => checkResponse(res));
+};
