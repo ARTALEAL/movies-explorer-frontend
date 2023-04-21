@@ -9,9 +9,10 @@ import Profile from '../Profile/Profile';
 import Register from '../Register/Register';
 import Login from '../Login/Login';
 import NotFoundPage from '../NotFoundPage/NotFoundPage';
+import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   return (
     <div className="App">
       <Routes>
@@ -19,18 +20,31 @@ function App() {
         <Route
           exact
           path="/movies"
-          element={<Movies loggedIn={isLoggedIn} />}
+          element={
+            <ProtectedRoute loggedIn={isLoggedIn}>
+              <Movies loggedIn={isLoggedIn} />
+            </ProtectedRoute>
+          }
         ></Route>
         <Route
           exact
           path="/saved-movies"
-          element={<SavedMovies loggedIn={isLoggedIn} />}
+          element={
+            <ProtectedRoute loggedIn={isLoggedIn}>
+              <SavedMovies loggedIn={isLoggedIn} />
+            </ProtectedRoute>
+          }
         ></Route>
         <Route
           exact
           path="/profile"
-          element={<Profile loggedIn={isLoggedIn} />}
+          element={
+            <ProtectedRoute loggedIn={isLoggedIn}>
+              <Profile loggedIn={isLoggedIn} />
+            </ProtectedRoute>
+          }
         ></Route>
+
         <Route exact path="/signup" element={<Register />}></Route>
         <Route exact path="/signin" element={<Login />}></Route>
         <Route exact path="*" element={<NotFoundPage />}></Route>
