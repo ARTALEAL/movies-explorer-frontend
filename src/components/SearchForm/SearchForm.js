@@ -1,8 +1,11 @@
 import React from 'react';
 import './SearchForm.css';
 import FilterCheckBox from '../FilterCheckBox/FilterCheckBox';
+import useForm from '../../hooks/useForm';
+import { useLocation } from 'react-router-dom';
 
 const SearchForm = () => {
+  const location = useLocation();
   return (
     <section className="search">
       <form className="search__form">
