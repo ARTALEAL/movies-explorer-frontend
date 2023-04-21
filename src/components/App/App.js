@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Routes, Route, useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import './App.css';
 import CurrentUserContext from '../../contexts/CurrentUserContext';
 
@@ -12,13 +12,25 @@ import Login from '../Login/Login';
 import NotFoundPage from '../NotFoundPage/NotFoundPage';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
-import { register, authorize } from '../../utils/MainApi';
+import {
+  register,
+  authorize,
+  getContent,
+  getSavedMovies,
+} from '../../utils/MainApi';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
+  const [savedMovies, setSavedMovies] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    handleTokenCheck();
+  }, [isLoggedIn]);
 
   // Авторизация
 
@@ -37,6 +49,18 @@ function App() {
       setIsLoggedIn(true);
       localStorage.setItem('jwt', data.token);
       navigate('/movies');
+      Promise.all([getContent(data.token), getSavedMovies(data.token)])
+        .then(([userInfo, userMovies]) => {
+          setCurrentUser(userInfo);
+          localStorage.setItem('savedMovies', JSON.stringify(userMovies));
+          setSavedMovies(userMovies);
+        })
+        .catch((error) => {
+          console.log(error);
+        })
+        .finally(() => {
+          setIsLoading(false);
+        });
     });
   };
 
@@ -46,6 +70,25 @@ function App() {
     setCurrentUser({});
     setIsLoggedIn(false);
     navigate('/');
+  };
+
+  //Token check
+  const handleTokenCheck = () => {
+    const path = location.pathname;
+    const jwt = localStorage.getItem('jwt');
+    getContent(jwt)
+      .then((data) => {
+        setIsLoggedIn(true);
+        setCurrentUser(data);
+        navigate(path);
+      })
+      .catch((err) => console.log(err));
+    getSavedMovies(jwt)
+      .then((movies) => {
+        console.log(movies);
+        setSavedMovies(movies);
+      })
+      .catch((err) => console.log(err));
   };
 
   return (
