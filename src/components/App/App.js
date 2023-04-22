@@ -17,6 +17,7 @@ import {
   authorize,
   getContent,
   getSavedMovies,
+  updateUserInfo,
 } from '../../utils/MainApi';
 
 function App() {
@@ -63,6 +64,22 @@ function App() {
         });
     });
   };
+  // Редактирование профиля
+  const handleUpdateUser = (newUserInfo) => {
+    const jwt = localStorage.getItem('jwt');
+    setIsLoading(true);
+    updateUserInfo(newUserInfo, jwt)
+      .then((data) => {
+        setCurrentUser(data);
+        console.log('Профиль отредактиирован');
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  };
 
   // Выйти из профиля
   const handleSignOut = () => {
@@ -85,7 +102,6 @@ function App() {
       .catch((err) => console.log(err));
     getSavedMovies(jwt)
       .then((movies) => {
-        console.log(movies);
         setSavedMovies(movies);
       })
       .catch((err) => console.log(err));
@@ -123,7 +139,11 @@ function App() {
             path="/profile"
             element={
               <ProtectedRoute loggedIn={isLoggedIn}>
-                <Profile loggedIn={isLoggedIn} onSignOut={handleSignOut} />
+                <Profile
+                  loggedIn={isLoggedIn}
+                  onSignOut={handleSignOut}
+                  onUpdateUser={handleUpdateUser}
+                />
               </ProtectedRoute>
             }
           ></Route>

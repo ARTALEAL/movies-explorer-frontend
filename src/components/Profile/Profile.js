@@ -1,25 +1,41 @@
-import React, { useState } from 'react';
+import React, { useContext, useEffect } from 'react';
 import './Profile.css';
 import Header from '../Header/Header';
+import CurrentUserContext from '../../contexts/CurrentUserContext';
+import useForm from '../../hooks/useForm';
 
-const Profile = ({ loggedIn, onSignOut }) => {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
+const Profile = ({ loggedIn, onSignOut, onUpdateUser }) => {
+  const currentUser = useContext(CurrentUserContext);
+  // const [name, setName] = useState('');
+  // const [email, setEmail] = useState('');
+  const { enteredValues, handleChange, resetForm, isFormValid } = useForm();
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    console.log('run');
+    onUpdateUser({
+      name: enteredValues.name,
+      email: enteredValues.email,
+    });
+  };
+
+  useEffect(() => {
+    currentUser ? resetForm(currentUser) : resetForm();
+  }, [currentUser, resetForm]);
 
   return (
     <section>
       <Header loggedIn={loggedIn} />
       <div className="profile__container">
-        <h1 className="profile__title">Привет, Артём!</h1>
-        <form className="profile__form">
+        <h1 className="profile__title">Привет, {currentUser.name}!</h1>
+        <form className="profile__form" onSubmit={handleSubmit}>
           <div className="profile__value">
             <label className="profile__label">Имя</label>
             <input
               type="text"
-              value={name}
-              onChange={(e) => {
-                setName(e.target.value);
-              }}
+              name="name"
+              value={enteredValues.name || ''}
+              onChange={handleChange}
               className="profile__input"
               required
               placeholder="Имя"
@@ -30,22 +46,23 @@ const Profile = ({ loggedIn, onSignOut }) => {
             <label className="profile__label">E-mail</label>
             <input
               type="email"
-              value={email}
-              onChange={(e) => {
-                setEmail(e.target.value);
-              }}
+              name="email"
+              value={enteredValues.email || ''}
+              onChange={handleChange}
               className="profile__input"
               required
               placeholder="pochta@yandex.ru"
             />
           </div>
+          <div className="profile__control">
+            <button className="profile__edit" type="submit">
+              Редактировать
+            </button>
+            <button className="profile__logout" onClick={() => onSignOut()}>
+              Выйти из аккаунта
+            </button>
+          </div>
         </form>
-        <div className="profile__control">
-          <button className="profile__edit">Редактировать</button>
-          <button className="profile__logout" onClick={() => onSignOut()}>
-            Выйти из аккаунта
-          </button>
-        </div>
       </div>
     </section>
   );
