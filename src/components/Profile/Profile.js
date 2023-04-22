@@ -6,8 +6,6 @@ import useForm from '../../hooks/useForm';
 
 const Profile = ({ loggedIn, onSignOut, onUpdateUser }) => {
   const currentUser = useContext(CurrentUserContext);
-  // const [name, setName] = useState('');
-  // const [email, setEmail] = useState('');
   const { enteredValues, handleChange, resetForm, isFormValid } = useForm();
 
   const handleSubmit = (event) => {
@@ -23,12 +21,17 @@ const Profile = ({ loggedIn, onSignOut, onUpdateUser }) => {
     currentUser ? resetForm(currentUser) : resetForm();
   }, [currentUser, resetForm]);
 
+  const wrong =
+    !isFormValid ||
+    (currentUser.name === enteredValues.name &&
+      currentUser.email === enteredValues.email);
+
   return (
     <section>
       <Header loggedIn={loggedIn} />
       <div className="profile__container">
         <h1 className="profile__title">Привет, {currentUser.name}!</h1>
-        <form className="profile__form" onSubmit={handleSubmit}>
+        <form className="profile__form form" onSubmit={handleSubmit}>
           <div className="profile__value">
             <label className="profile__label">Имя</label>
             <input
@@ -55,7 +58,7 @@ const Profile = ({ loggedIn, onSignOut, onUpdateUser }) => {
             />
           </div>
           <div className="profile__control">
-            <button className="profile__edit" type="submit">
+            <button className="profile__edit" type="submit" disabled={wrong}>
               Редактировать
             </button>
             <button className="profile__logout" onClick={() => onSignOut()}>

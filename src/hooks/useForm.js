@@ -18,7 +18,7 @@ const useForm = () => {
       [name]: event.target.validationMessage,
     });
 
-    // setIsFormValid(event.target.closest(".form").checkValidity());
+    setIsFormValid(event.target.closest('.form').checkValidity());
   };
 
   const resetForm = useCallback(
