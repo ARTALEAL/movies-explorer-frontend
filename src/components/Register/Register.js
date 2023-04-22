@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import logo from '../../images/headerLogo.svg';
 import useForm from '../../hooks/useForm';
 
-const Register = ({ onRegister }) => {
+const Register = ({ onRegister, userMessageError }) => {
   const { enteredValues, errors, handleChange } = useForm();
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -18,7 +18,7 @@ const Register = ({ onRegister }) => {
         </Link>
         <h1 className="register__title">Добро пожаловать!</h1>
       </div>
-      <form className="register__form" onSubmit={handleSubmit}>
+      <form className="register__form form" onSubmit={handleSubmit}>
         <label className="register__label" htmlFor="name">
           Имя
         </label>
@@ -63,6 +63,7 @@ const Register = ({ onRegister }) => {
           placeholder="Пароль"
         />
         <span className="register__error">{errors.password}</span>
+        <span className="register__error">{userMessageError}</span>
         <button className="register__button" type="submit">
           Зарегистрироваться
         </button>

@@ -45,6 +45,7 @@ function App() {
       })
       .catch((error) => {
         console.log(error);
+        setUserMessageError('Что-то пошло не так...');
       });
   };
 
@@ -67,7 +68,9 @@ function App() {
         });
     });
   };
+
   // Редактирование профиля
+
   const handleUpdateUser = (newUserInfo) => {
     const jwt = localStorage.getItem('jwt');
     setIsLoading(true);
@@ -105,6 +108,7 @@ function App() {
       .then((data) => {
         setIsLoggedIn(true);
         setCurrentUser(data);
+        setUserMessageError('');
         navigate(path);
       })
       .catch((err) => console.log(err));
@@ -161,7 +165,12 @@ function App() {
           <Route
             exact
             path="/signup"
-            element={<Register onRegister={handleRegistration} />}
+            element={
+              <Register
+                onRegister={handleRegistration}
+                userMessageError={userMessageError}
+              />
+            }
           ></Route>
           <Route
             exact
