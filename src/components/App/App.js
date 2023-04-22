@@ -25,6 +25,9 @@ function App() {
   const [currentUser, setCurrentUser] = useState({});
   const [savedMovies, setSavedMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  //message
+  const [userMessage, setUserMessage] = useState('');
+  const [userMessageError, setUserMessageError] = useState('');
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -71,10 +74,15 @@ function App() {
     updateUserInfo(newUserInfo, jwt)
       .then((data) => {
         setCurrentUser(data);
-        console.log('Профиль отредактиирован');
+        setUserMessage('Профиль отредактирован успешно');
+        setUserMessageError('');
+        setTimeout(() => {
+          setUserMessage('');
+        }, 2000);
       })
       .catch((error) => {
         console.log(error);
+        setUserMessageError('Приобновлении профиля произошла ошибка');
       })
       .finally(() => {
         setIsLoading(false);
@@ -143,6 +151,8 @@ function App() {
                   loggedIn={isLoggedIn}
                   onSignOut={handleSignOut}
                   onUpdateUser={handleUpdateUser}
+                  userMessage={userMessage}
+                  userMessageError={userMessageError}
                 />
               </ProtectedRoute>
             }

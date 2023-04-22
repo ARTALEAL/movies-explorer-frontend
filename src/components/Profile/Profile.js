@@ -4,13 +4,18 @@ import Header from '../Header/Header';
 import CurrentUserContext from '../../contexts/CurrentUserContext';
 import useForm from '../../hooks/useForm';
 
-const Profile = ({ loggedIn, onSignOut, onUpdateUser }) => {
+const Profile = ({
+  loggedIn,
+  onSignOut,
+  onUpdateUser,
+  userMessage,
+  userMessageError,
+}) => {
   const currentUser = useContext(CurrentUserContext);
   const { enteredValues, handleChange, resetForm, isFormValid } = useForm();
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log('run');
     onUpdateUser({
       name: enteredValues.name,
       email: enteredValues.email,
@@ -58,6 +63,11 @@ const Profile = ({ loggedIn, onSignOut, onUpdateUser }) => {
             />
           </div>
           <div className="profile__control">
+            {userMessage ? (
+              <span>{userMessage}</span>
+            ) : (
+              <span className="profile__error">{userMessageError}</span>
+            )}
             <button className="profile__edit" type="submit" disabled={wrong}>
               Редактировать
             </button>
