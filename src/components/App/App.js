@@ -147,6 +147,7 @@ function App() {
   const handleSignOut = () => {
     localStorage.clear();
     setCurrentUser({});
+    setSavedMovies([]);
     setIsLoggedIn(false);
     navigate('/');
   };

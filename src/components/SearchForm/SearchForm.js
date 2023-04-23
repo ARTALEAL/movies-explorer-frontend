@@ -19,7 +19,7 @@ const SearchForm = ({
   }
 
   function handleSavedMoviesFormSubmit(evt) {
-    evt.prevenDefault();
+    evt.preventDefault();
     onSearchMovies(enteredValues.searchRequest, shortMovies, resetForm);
   }
 

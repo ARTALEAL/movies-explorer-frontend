@@ -16,10 +16,11 @@ const SavedMovies = ({ loggedIn, savedMovies, isLoading, onDelete }) => {
   const location = useLocation();
 
   const handleSearchSubmit = (inputValue) => {
-    if (inputValue.trim().length === 0) {
+    if (inputValue === undefined || inputValue.trim().length === 0) {
       console.log('Нужно ввести слово');
       return;
     }
+
     const moviesList = filterMovies(savedMovies, inputValue, shortMovies);
     setSearchQuery(inputValue);
     if (moviesList.length === 0) {
@@ -36,8 +37,8 @@ const SavedMovies = ({ loggedIn, savedMovies, isLoading, onDelete }) => {
     if (!shortMovies) {
       setShortMovies(true);
       localStorage.setItem('shortSavedMovies', true);
-      setShowedMovies(filterShorts(filterMovies));
-      filterShorts(filterMovies).length === 0
+      setShowedMovies(filterShorts(filteredMovies));
+      filterShorts(filteredMovies).length === 0
         ? setNotFound(true)
         : setNotFound(false);
     } else {

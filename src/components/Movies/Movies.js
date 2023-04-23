@@ -35,6 +35,7 @@ const Movies = ({ loggedIn, onLoading, isLoading, savedMovies, onSave }) => {
   const handleSearchSubmit = (inputValue) => {
     if (inputValue === undefined || inputValue.trim().length === 0) {
       console.log('Нужно ввести ключевое слово');
+      handleSetFilteredMovies(isAllMovies, inputValue, shortMovies);
       return;
     }
     localStorage.setItem('movieSearch', inputValue);
