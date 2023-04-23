@@ -69,6 +69,15 @@ function App() {
     });
   };
 
+  // Cards
+  const handleSaveMovie = (movie) => {
+    console.log('HandleSave');
+  };
+
+  const handleDeleteMovie = (movie) => {
+    console.log('handleDelete');
+  };
+
   // Редактирование профиля
 
   const handleUpdateUser = (newUserInfo) => {
@@ -138,6 +147,8 @@ function App() {
                   isLoading={isLoading}
                   onLoading={setIsLoading}
                   savedMovies={savedMovies}
+                  onSave={handleSaveMovie}
+                  onDelete={handleDeleteMovie}
                 />
               </ProtectedRoute>
             }
@@ -152,6 +163,7 @@ function App() {
                   isLoading={isLoading}
                   onLoading={setIsLoading}
                   savedMovies={savedMovies}
+                  onDelete={handleDeleteMovie}
                 />
               </ProtectedRoute>
             }

@@ -14,7 +14,7 @@ const SearchForm = ({
   const { enteredValues, handleChange, resetForm, isFormValid } = useForm();
 
   function handleFormSubmit(evt) {
-    evt.preveventDefault();
+    evt.preventDefault();
     onSearchMovies(enteredValues.searchRequest, isFormValid, shortMovies);
   }
 

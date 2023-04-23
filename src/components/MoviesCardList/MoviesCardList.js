@@ -1,9 +1,15 @@
 import React, { useState } from 'react';
 import './MoviesCardList.css';
-import Preloader from '../Preloader/Preloader';
 import MoviesCard from '../MoviesCard/MoviesCard';
+import { checkSavedCard } from '../../utils/utils';
 
-const MoviesCardList = ({ isSavedMoviesPage, movies, onSave, onDelete }) => {
+const MoviesCardList = ({
+  isSavedMoviesPage,
+  movies,
+  onSave,
+  onDelete,
+  savedMovies,
+}) => {
   const [showMoviesList, setShowMoviesList] = useState(movies);
   return (
     <section className="cards">
@@ -16,6 +22,7 @@ const MoviesCardList = ({ isSavedMoviesPage, movies, onSave, onDelete }) => {
               isSavedMoviesPage={isSavedMoviesPage}
               onSave={onSave}
               onDelete={onDelete}
+              saved={checkSavedCard(savedMovies, movie)}
             />
           );
         })}
