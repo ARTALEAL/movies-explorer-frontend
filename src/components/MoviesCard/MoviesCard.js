@@ -1,8 +1,12 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './MoviesCard.css';
 import { convertMinToHours } from '../../utils/utils';
+import useScreenWidth from '../../hooks/useScreenWidth';
 
 const MoviesCard = ({ isSavedMoviesPage, movie, onSave, onDelete, saved }) => {
+  const screenWidth = useScreenWidth();
+  const [isMobile, setIsMobile] = useState(false);
+
   const handleSaveCard = () => {
     onSave(movie);
   };
@@ -10,6 +14,14 @@ const MoviesCard = ({ isSavedMoviesPage, movie, onSave, onDelete, saved }) => {
   const handleDeleteCard = () => {
     onDelete(movie);
   };
+
+  useEffect(() => {
+    if (screenWidth < 768) {
+      setIsMobile(true);
+    } else {
+      setIsMobile(false);
+    }
+  }, [screenWidth]);
 
   return (
     <div className="card">
@@ -43,6 +55,22 @@ const MoviesCard = ({ isSavedMoviesPage, movie, onSave, onDelete, saved }) => {
       ) : (
         <button
           className={!saved ? 'card__button' : 'card__button_hidden'}
+          type="button"
+          onClick={handleSaveCard}
+        >
+          Сохранить
+        </button>
+      )}
+      {isMobile && isSavedMoviesPage && (
+        <button
+          className="card__button_delete card__button_visible"
+          type="button"
+          onClick={handleDeleteCard}
+        />
+      )}
+      {isMobile && !isSavedMoviesPage && !saved && (
+        <button
+          className="card__button card__button_visible"
           type="button"
           onClick={handleSaveCard}
         >
