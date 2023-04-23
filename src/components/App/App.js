@@ -137,6 +137,7 @@ function App() {
                   loggedIn={isLoggedIn}
                   isLoading={isLoading}
                   onLoading={setIsLoading}
+                  savedMovies={savedMovies}
                 />
               </ProtectedRoute>
             }
@@ -146,7 +147,12 @@ function App() {
             path="/saved-movies"
             element={
               <ProtectedRoute loggedIn={isLoggedIn}>
-                <SavedMovies loggedIn={isLoggedIn} />
+                <SavedMovies
+                  loggedIn={isLoggedIn}
+                  isLoading={isLoading}
+                  onLoading={setIsLoading}
+                  savedMovies={savedMovies}
+                />
               </ProtectedRoute>
             }
           ></Route>

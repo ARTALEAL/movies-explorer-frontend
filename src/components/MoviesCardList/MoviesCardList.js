@@ -3,25 +3,24 @@ import './MoviesCardList.css';
 import Preloader from '../Preloader/Preloader';
 import MoviesCard from '../MoviesCard/MoviesCard';
 
-const MoviesCardList = ({ isLoading = false, isSavedMoviesPage, movies }) => {
+const MoviesCardList = ({ isSavedMoviesPage, movies, onSave, onDelete }) => {
   const [showMoviesList, setShowMoviesList] = useState(movies);
   return (
     <section className="cards">
-      {isLoading ? (
-        <Preloader />
-      ) : (
-        <ul className="cards__list">
-          {showMoviesList.sort().map((movie) => {
-            return (
-              <MoviesCard
-                key={isSavedMoviesPage ? movie.movieId : movie.id}
-                movie={movie}
-                isSavedMoviesPage={isSavedMoviesPage}
-              />
-            );
-          })}
-        </ul>
-      )}
+      <ul className="cards__list">
+        {showMoviesList.sort().map((movie) => {
+          return (
+            <MoviesCard
+              key={isSavedMoviesPage ? movie.movieId : movie.id}
+              movie={movie}
+              isSavedMoviesPage={isSavedMoviesPage}
+              onSave={onSave}
+              onDelete={onDelete}
+            />
+          );
+        })}
+      </ul>
+
       <button
         className={
           !isSavedMoviesPage ? 'cards__button' : 'cards__button_hidden'
