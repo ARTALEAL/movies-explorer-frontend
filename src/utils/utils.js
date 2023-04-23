@@ -29,3 +29,9 @@ export function filterMovies(movies, userQuery, shortMoviesCheckbox) {
     return moviesByUserQuery;
   }
 }
+
+export const checkSavedCard = (moviesList, movie) => {
+  return moviesList.find((item) => {
+    return item.movieId === (movie.id || movie.movieId);
+  });
+};

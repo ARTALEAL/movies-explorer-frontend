@@ -78,3 +78,27 @@ export const deleteMovie = async (id, jwt) => {
     },
   }).then((res) => checkResponse(res));
 };
+
+export const saveMovie = async (movie, jwt) => {
+  return fetch(`${BASE_API_URL}/movies`, {
+    method: 'POST',
+    headers: {
+      ...headers,
+      Authorization: `Bearer ${jwt}`,
+    },
+    body: JSON.stringify({
+      country: movie.country,
+      director: movie.director,
+      duration: movie.duration,
+      year: movie.year,
+      description: movie.description,
+      image: 'https://api.nomoreparties.co/' + movie.image.url,
+      trailerLink: movie.trailerLink,
+      thumbnail:
+        'https://api.nomoreparties.co/' + movie.image.formats.thumbnail.url,
+      movieId: movie.id,
+      nameRU: movie.nameRU || movie.nameEN,
+      nameEN: movie.nameEN || movie.nameRU,
+    }),
+  }).then((res) => checkResponse(res));
+};
