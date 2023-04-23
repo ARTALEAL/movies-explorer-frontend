@@ -13,17 +13,22 @@ const Movies = ({ loggedIn, onLoading, isLoading, savedMovies, onSave }) => {
   const [shortMovies, setShortMovies] = useState(false);
   const [initialMovies, setInitialMovies] = useState([]);
   const [filteredMovies, setFilteredMovies] = useState([]);
-  const [notFound, setNotFound] = useState(false);
+  // const [notFound, setNotFound] = useState(false);
   const [isAllMovies, setIsAllMovies] = useState([]);
+  //Message
+  const [userMessage, setUserMessage] = useState('');
+
   const location = useLocation();
 
   const handleSetFilteredMovies = (movies, userQuery, shortMoviesCheckbox) => {
     const moviesList = filterMovies(movies, userQuery, false);
     if (moviesList.length === 0) {
-      setNotFound(true);
+      // setNotFound(true);
+      setUserMessage('Ничего не найдено');
       console.log('Ничего не найдено!');
     } else {
-      setNotFound(false);
+      // setNotFound(false);
+      setUserMessage('');
     }
     setInitialMovies(moviesList);
     setFilteredMovies(
@@ -36,12 +41,14 @@ const Movies = ({ loggedIn, onLoading, isLoading, savedMovies, onSave }) => {
     if (inputValue === undefined || inputValue.trim().length === 0) {
       console.log('Нужно ввести ключевое слово');
       handleSetFilteredMovies(isAllMovies, inputValue, shortMovies);
+      setUserMessage('Нужно ввести ключевое слово');
       return;
     }
     localStorage.setItem('movieSearch', inputValue);
     localStorage.setItem('shortMovies', shortMovies);
     if (isAllMovies.length === 0) {
       onLoading(true);
+      setUserMessage('');
       moviesApi
         .getMovies()
         .then((movies) => {
@@ -51,6 +58,9 @@ const Movies = ({ loggedIn, onLoading, isLoading, savedMovies, onSave }) => {
         })
         .catch((error) => {
           console.log(error);
+          setUserMessage(
+            'Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз'
+          );
         })
         .finally(() => onLoading(false));
     } else {
@@ -63,7 +73,8 @@ const Movies = ({ loggedIn, onLoading, isLoading, savedMovies, onSave }) => {
     if (!shortMovies) {
       setFilteredMovies(filterShorts(initialMovies));
       if (filterMovies.length === 0) {
-        setNotFound(true);
+        // setNotFound(true);
+        setUserMessage('Пустота');
       }
     } else {
       setFilteredMovies(initialMovies);
@@ -107,6 +118,7 @@ const Movies = ({ loggedIn, onLoading, isLoading, savedMovies, onSave }) => {
             movies={filteredMovies}
             savedMovies={savedMovies}
             onSave={onSave}
+            userMessage={userMessage}
           />
         )}
       </main>

@@ -20,6 +20,7 @@ const MoviesCardList = ({
   onSave,
   onDelete,
   savedMovies,
+  userMessage,
 }) => {
   const [showMoviesList, setShowMoviesList] = useState(movies);
   const screenWidth = useScreenWidth();
@@ -56,6 +57,7 @@ const MoviesCardList = ({
 
   return (
     <section className="cards">
+      {userMessage ? <span>{userMessage}</span> : <span></span>}
       <ul className="cards__list">
         {showMoviesList.sort().map((movie) => {
           return (
