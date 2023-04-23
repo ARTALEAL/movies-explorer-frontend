@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './Movies.css';
 import Header from '../Header/Header';
 import SearchForm from '../SearchForm/SearchForm';
@@ -69,6 +69,27 @@ const Movies = ({ loggedIn, onLoading, isLoading, savedMovies, onSave }) => {
     }
     localStorage.setItem('shortMovies', !shortMovies);
   };
+
+  useEffect(() => {
+    if (localStorage.getItem('shortMovies') === 'true') {
+      setShortMovies(true);
+    } else {
+      setShortMovies(false);
+    }
+  }, [location]);
+
+  useEffect(() => {
+    if (localStorage.getItem('movies')) {
+      const movies = JSON.parse(localStorage.getItem('movies'));
+      setInitialMovies(movies);
+      if (localStorage.getItem('shortMovies') === 'true') {
+        setFilteredMovies(filterShorts(movies));
+      } else {
+        setFilteredMovies(movies);
+      }
+    }
+  }, [location]);
+
   return (
     <>
       <Header loggedIn={loggedIn} />
@@ -82,7 +103,7 @@ const Movies = ({ loggedIn, onLoading, isLoading, savedMovies, onSave }) => {
         {!isLoading && (
           <MoviesCardList
             isSavedMoviesPage={false}
-            movies={filterMovies}
+            movies={filteredMovies}
             savedMovies={savedMovies}
             onSave={onSave}
           />
