@@ -133,7 +133,11 @@ function App() {
             path="/movies"
             element={
               <ProtectedRoute loggedIn={isLoggedIn}>
-                <Movies loggedIn={isLoggedIn} />
+                <Movies
+                  loggedIn={isLoggedIn}
+                  isLoading={isLoading}
+                  onLoading={setIsLoading}
+                />
               </ProtectedRoute>
             }
           ></Route>

@@ -1,19 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './MoviesCardList.css';
 import Preloader from '../Preloader/Preloader';
 import MoviesCard from '../MoviesCard/MoviesCard';
 
 const MoviesCardList = ({ isLoading = false, isSavedMoviesPage, movies }) => {
+  const [showMoviesList, setShowMoviesList] = useState(movies);
   return (
     <section className="cards">
       {isLoading ? (
         <Preloader />
       ) : (
         <ul className="cards__list">
-          {movies.map((movie) => {
+          {showMoviesList.sort().map((movie) => {
             return (
               <MoviesCard
-                key={movie.id}
+                key={isSavedMoviesPage ? movie.movieId : movie.id}
                 movie={movie}
                 isSavedMoviesPage={isSavedMoviesPage}
               />
