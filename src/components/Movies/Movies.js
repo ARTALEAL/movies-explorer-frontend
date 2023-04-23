@@ -33,8 +33,8 @@ const Movies = ({ loggedIn, onLoading, isLoading, savedMovies, onSave }) => {
   };
 
   const handleSearchSubmit = (inputValue) => {
-    if (inputValue.trim().length === 0) {
-      console.log('Нужно ввести слово');
+    if (inputValue === undefined || inputValue.trim().length === 0) {
+      console.log('Нужно ввести ключевое слово');
       return;
     }
     localStorage.setItem('movieSearch', inputValue);
