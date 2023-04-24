@@ -52,6 +52,14 @@
   visibility: hidden;
 }
 
+.card__button_hidden {
+  display: none;
+}
+
+.card__button_visible {
+  visibility: visible;
+}
+
 .card:hover .card__button {
   visibility: visible;
 }
@@ -80,6 +88,10 @@
   cursor: pointer;
   display: block;
   visibility: hidden;
+}
+
+.card__button_visible {
+  visibility: visible;
 }
 
 .card:hover .card__button_delete {
