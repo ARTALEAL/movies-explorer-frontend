@@ -47,27 +47,38 @@ function App() {
       .catch((error) => {
         console.log(error);
         setUserMessageError('Что-то пошло не так...');
+        setTimeout(() => {
+          setUserMessageError('');
+        }, 2000);
       });
   };
 
   const handleAuthorization = async (data) => {
-    return authorize(data).then((data) => {
-      setIsLoggedIn(true);
-      localStorage.setItem('jwt', data.token);
-      navigate('/movies');
-      Promise.all([getContent(data.token), getSavedMovies(data.token)])
-        .then(([userInfo, userMovies]) => {
-          setCurrentUser(userInfo);
-          localStorage.setItem('savedMovies', JSON.stringify(userMovies));
-          setSavedMovies(userMovies);
-        })
-        .catch((error) => {
-          console.log(error);
-        })
-        .finally(() => {
-          setIsLoading(false);
-        });
-    });
+    return authorize(data)
+      .then((data) => {
+        setIsLoggedIn(true);
+        localStorage.setItem('jwt', data.token);
+        navigate('/movies');
+        Promise.all([getContent(data.token), getSavedMovies(data.token)])
+          .then(([userInfo, userMovies]) => {
+            setCurrentUser(userInfo);
+            localStorage.setItem('savedMovies', JSON.stringify(userMovies));
+            setSavedMovies(userMovies);
+          })
+          .catch((error) => {
+            console.log(error);
+          })
+          .finally(() => {
+            setIsLoading(false);
+          });
+      })
+      .catch((error) => {
+        console.log(error);
+        setUserMessageError('Неправильные почта или пароль');
+        setTimeout(() => {
+          setUserMessageError('');
+        }, 2000);
+      });
   };
 
   // Карточки
@@ -239,7 +250,12 @@ function App() {
           <Route
             exact
             path="/signin"
-            element={<Login onLogin={handleAuthorization} />}
+            element={
+              <Login
+                onLogin={handleAuthorization}
+                userMessageError={userMessageError}
+              />
+            }
           ></Route>
           <Route exact path="*" element={<NotFoundPage />}></Route>
         </Routes>

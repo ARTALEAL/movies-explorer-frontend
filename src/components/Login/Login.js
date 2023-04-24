@@ -4,7 +4,7 @@ import useForm from '../../hooks/useForm';
 import logo from '../../images/headerLogo.svg';
 import { Link } from 'react-router-dom';
 
-const Login = ({ onLogin }) => {
+const Login = ({ onLogin, userMessageError }) => {
   const { enteredValues, errors, handleChange, isFormValid } = useForm();
 
   const handleSubmit = (event) => {
@@ -50,6 +50,7 @@ const Login = ({ onLogin }) => {
           onChange={handleChange}
         />
         <span className="login__error">{errors.password}</span>
+        <span className="login__error">{userMessageError}</span>
         <button className="login__button" type="submit" disabled={!isFormValid}>
           Войти
         </button>
