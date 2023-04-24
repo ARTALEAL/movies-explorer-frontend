@@ -27,7 +27,6 @@ function App() {
   const [currentUser, setCurrentUser] = useState({});
   const [savedMovies, setSavedMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  //message
   const [userMessage, setUserMessage] = useState('');
   const [userMessageError, setUserMessageError] = useState('');
 
@@ -71,7 +70,7 @@ function App() {
     });
   };
 
-  // Cards
+  // Карточки
   const handleSaveMovie = (movie) => {
     const jwt = localStorage.getItem('jwt');
     const handledMovie = savedMovies.find((item) => {

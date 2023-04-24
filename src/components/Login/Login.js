@@ -5,7 +5,7 @@ import logo from '../../images/headerLogo.svg';
 import { Link } from 'react-router-dom';
 
 const Login = ({ onLogin }) => {
-  const { enteredValues, errors, handleChange } = useForm();
+  const { enteredValues, errors, handleChange, isFormValid } = useForm();
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -50,7 +50,7 @@ const Login = ({ onLogin }) => {
           onChange={handleChange}
         />
         <span className="login__error">{errors.password}</span>
-        <button className="login__button" type="submit">
+        <button className="login__button" type="submit" disabled={!isFormValid}>
           Войти
         </button>
       </form>

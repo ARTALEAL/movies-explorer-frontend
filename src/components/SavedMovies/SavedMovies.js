@@ -9,7 +9,6 @@ import Preloader from '../Preloader/Preloader';
 
 const SavedMovies = ({ loggedIn, savedMovies, isLoading, onDelete }) => {
   const [shortMovies, setShortMovies] = useState(false);
-  // const [notFound, setNotFound] = useState(false);
   const [showedMovies, setShowedMovies] = useState(savedMovies);
   const [filteredMovies, setFilteredMovies] = useState(showedMovies);
   const [searchQuery, setSearchQuery] = useState('');
@@ -29,11 +28,9 @@ const SavedMovies = ({ loggedIn, savedMovies, isLoading, onDelete }) => {
     const moviesList = filterMovies(savedMovies, inputValue, shortMovies);
     setSearchQuery(inputValue);
     if (moviesList.length === 0) {
-      // setNotFound(true);
       console.log('Ничего не найдено');
       setUserMessage('Ничего не найдено');
     } else {
-      // setNotFound(false);
       setUserMessage('');
       setFilteredMovies(moviesList);
       setShowedMovies(moviesList);
@@ -46,14 +43,11 @@ const SavedMovies = ({ loggedIn, savedMovies, isLoading, onDelete }) => {
       localStorage.setItem('shortSavedMovies', true);
       setShowedMovies(filterShorts(filteredMovies));
       filterShorts(filteredMovies).length === 0
-        ? // ? setNotFound(true)
-          // : setNotFound(false);
-          setUserMessage('Ничего не найдено')
+        ? setUserMessage('Ничего не найдено')
         : setUserMessage('');
     } else {
       setShortMovies(false);
       localStorage.setItem('shortSavedMovies', false);
-      // filteredMovies.length === 0 ? setNotFound(true) : setNotFound(false);
       filteredMovies.length === 0
         ? setUserMessage('Ничего не найдено')
         : setUserMessage('');
@@ -74,7 +68,6 @@ const SavedMovies = ({ loggedIn, savedMovies, isLoading, onDelete }) => {
 
   useEffect(() => {
     setFilteredMovies(savedMovies);
-    // savedMovies.length !== 0 ? setNotFound(false) : setNotFound(true);
     savedMovies.length !== 0
       ? setUserMessage('')
       : setUserMessage('Ничего не найдено');

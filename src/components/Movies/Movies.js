@@ -13,9 +13,7 @@ const Movies = ({ loggedIn, onLoading, isLoading, savedMovies, onSave }) => {
   const [shortMovies, setShortMovies] = useState(false);
   const [initialMovies, setInitialMovies] = useState([]);
   const [filteredMovies, setFilteredMovies] = useState([]);
-  // const [notFound, setNotFound] = useState(false);
   const [isAllMovies, setIsAllMovies] = useState([]);
-  //Message
   const [userMessage, setUserMessage] = useState('');
 
   const location = useLocation();
@@ -23,11 +21,9 @@ const Movies = ({ loggedIn, onLoading, isLoading, savedMovies, onSave }) => {
   const handleSetFilteredMovies = (movies, userQuery, shortMoviesCheckbox) => {
     const moviesList = filterMovies(movies, userQuery, false);
     if (moviesList.length === 0) {
-      // setNotFound(true);
       setUserMessage('Ничего не найдено');
       console.log('Ничего не найдено!');
     } else {
-      // setNotFound(false);
       setUserMessage('');
     }
     setInitialMovies(moviesList);
@@ -73,8 +69,7 @@ const Movies = ({ loggedIn, onLoading, isLoading, savedMovies, onSave }) => {
     if (!shortMovies) {
       setFilteredMovies(filterShorts(initialMovies));
       if (filterMovies.length === 0) {
-        // setNotFound(true);
-        setUserMessage('Пустота');
+        setUserMessage('Ничего не найдено');
       }
     } else {
       setFilteredMovies(initialMovies);

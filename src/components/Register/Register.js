@@ -5,7 +5,7 @@ import logo from '../../images/headerLogo.svg';
 import useForm from '../../hooks/useForm';
 
 const Register = ({ onRegister, userMessageError }) => {
-  const { enteredValues, errors, handleChange } = useForm();
+  const { enteredValues, errors, handleChange, isFormValid } = useForm();
   const handleSubmit = (event) => {
     event.preventDefault();
     onRegister(enteredValues);
@@ -64,7 +64,11 @@ const Register = ({ onRegister, userMessageError }) => {
         />
         <span className="register__error">{errors.password}</span>
         <span className="register__error">{userMessageError}</span>
-        <button className="register__button" type="submit">
+        <button
+          className="register__button"
+          type="submit"
+          disabled={!isFormValid}
+        >
           Зарегистрироваться
         </button>
       </form>
